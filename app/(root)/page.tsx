@@ -1,7 +1,61 @@
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 import React from 'react'
+import Image from 'next/image'
+import InterviewCard from '@/components/InterviewCard'
+import { dummyInterviews } from '@/constants'
 
 const page = () => {
-  return <div>Home Page</div>
+  return (
+    <>
+      <section className="card-cta">
+        <div className="fex flex-col gap-6 max-w-lg">
+          <h2 className="text-4xl text-center font-bold">
+            Get Interview Ready with AI-Powered Practice and Feedback.
+          </h2>
+          <p className="text-center text-lg">
+            InterPrep is a free tool that helps you prepare for interviews by
+            providing AI-generated questions and feedback.
+          </p>
+          <Button asChild className="btn-primary max-sm:w-full">
+            <Link href="/interview">Start an Interview</Link>
+          </Button>
+        </div>
+        <Image
+          src="/robot.png"
+          alt="robo-dude"
+          width={400}
+          height={400}
+          className="max-sm:hidden"
+        />
+      </section>
+      <section className="flex flex-col gap-6 mt-8">
+        <h2>Your Interviews</h2>
+        <div className="interviews-section">
+          {dummyInterviews.map((interview) => (
+            <InterviewCard
+              {...interview}
+              interviewId={interview.id}
+              key={interview.id}
+            />
+          ))}
+        </div>
+      </section>
+
+      <div className="flex flex-col gap-6 mt-8">
+        <h2>Take an interview</h2>
+        <div className="interviews-section">
+          {dummyInterviews.map((interview) => (
+            <InterviewCard
+              {...interview}
+              interviewId={interview.id}
+              key={interview.id}
+            />
+          ))}
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default page
